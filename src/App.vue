@@ -1,13 +1,9 @@
 <template>
   <div id="app">
-    <button @click="changeText">切り替え</button>
-    <p v-if="ok">OK！</p>
-    <p v-else>Not OK...</p>
-    <ul>
-      <li v-for="fruit in fruits" :key="fruit">{{ fruit }}</li>
-    </ul>
-    <p>いいね({{ number }})</p>
-    <LikeNumber />
+    <h1>トータルのいいね数</h1>
+    <h2>{{ number }}</h2>
+    <LikeNumber :total-number="number" @my-click="incrementNumber" />
+    <LikeNumber :total-number="number" />
   </div>
 </template>
 
@@ -20,14 +16,12 @@ export default {
   },
   data() {
     return {
-      ok: true,
-      fruits: ["aaa", "bbb", "cccc", "dddd"],
       number: 5,
     };
   },
   methods: {
-    changeText() {
-      this.ok = !this.ok;
+    incrementNumber(event) {
+      this.number = event;
     },
   },
 };
